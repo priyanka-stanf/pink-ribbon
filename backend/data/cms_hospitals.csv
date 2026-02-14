@@ -1,0 +1,41 @@
+id,name,lat,lon,type,quality_rating
+h1,UCSF Medical Center,37.763,-122.458,academic,4
+h2,California Pacific Medical Center,37.787,-122.420,community,3
+h3,Kaiser Permanente San Francisco,37.784,-122.409,community,4
+h4,Sutter Health CPMC Van Ness,37.781,-122.424,community,3
+h5,Stanford Health Care (SF campus),37.769,-122.426,academic,5
+h6,Mount Sinai Hospital,40.790,-73.955,academic,4
+h7,NYU Langone Health,40.742,-73.975,academic,5
+h8,NewYork-Presbyterian,40.765,-73.953,academic,5
+h9,Lenox Hill Hospital,40.774,-73.961,community,4
+h10,Memorial Sloan Kettering,40.764,-73.955,academic,5
+h11,Mount Sinai West,40.769,-73.984,academic,4
+h12,Northwestern Memorial Hospital,41.891,-87.620,academic,5
+h13,Rush University Medical Center,41.875,-87.675,academic,5
+h14,University of Chicago Medical Center,41.789,-87.602,academic,5
+h15,Advocate Illinois Masonic,41.924,-87.655,community,3
+h16,Loyola University Medical Center,41.861,-87.855,academic,4
+h17,John H Stroger Jr Hospital,41.874,-87.669,community,3
+h18,MD Anderson Cancer Center,29.707,-95.397,academic,5
+h19,Houston Methodist Hospital,29.709,-95.401,academic,5
+h20,Memorial Hermann Texas Medical Center,29.709,-95.398,academic,4
+h21,Baylor St Lukes Medical Center,29.712,-95.396,academic,4
+h22,Harris Health Ben Taub,29.708,-95.395,community,3
+h23,Cedars-Sinai Medical Center,34.073,-118.378,academic,5
+h24,UCLA Medical Center,34.066,-118.446,academic,5
+h25,Keck Hospital of USC,34.060,-118.206,academic,5
+h26,Providence Saint Johns Health Center,34.019,-118.469,community,4
+h27,Huntington Memorial Hospital,34.122,-118.113,community,4
+h28,Massachusetts General Hospital,42.363,-71.069,academic,5
+h29,Brigham and Womens Hospital,42.336,-71.105,academic,5
+h30,Beth Israel Deaconess Medical Center,42.338,-71.108,academic,5
+h31,Boston Medical Center,42.335,-71.074,academic,4
+h32,Tufts Medical Center,42.349,-71.063,academic,4
+h33,Lahey Hospital and Medical Center,42.517,-71.194,academic,4
+h34,Hospital of the University of Pennsylvania,39.948,-75.196,academic,5
+h35,Thomas Jefferson University Hospital,39.949,-75.162,academic,5
+h36,Temple University Hospital,39.981,-75.156,academic,4
+h37,Penn Presbyterian Medical Center,39.952,-75.201,academic,4
+h38,Fox Chase Cancer Center,40.086,-75.174,academic,5
+ct1,UCSF Helen Diller Family Comprehensive Cancer Center,37.763,-122.457,clinical_trial,5
+ct2,Memorial Sloan Kettering Cancer Center (Clinical Trials),40.764,-73.954,clinical_trial,5

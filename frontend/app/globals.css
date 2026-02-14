@@ -11,3 +11,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ── Shared form utilities ─────────────────────────────────────────────── */
+
+@layer components {
+  .input {
+    @apply border border-stone-300 rounded-lg p-2 w-full text-sm;
+  }
+  .label {
+    @apply block text-sm font-medium text-stone-700 mb-1;
+  }
+  .btn-primary {
+    @apply bg-stone-800 text-white px-4 py-2 rounded-lg font-medium hover:bg-stone-700 transition;
+  }
+  .btn-secondary {
+    @apply border border-stone-300 text-stone-700 px-4 py-2 rounded-lg font-medium hover:bg-stone-100 transition;
+  }
+}

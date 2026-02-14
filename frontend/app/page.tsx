@@ -1,31 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import CareCompassForm from "./components/CareCompassForm";
-
-const ProjectionResults = dynamic(
-  () => import("./components/ProjectionResults").then((m) => m.default),
-  { ssr: false }
-);
+import Link from "next/link";
 
 export default function Home() {
-  const [results, setResults] = useState<unknown>(null);
-
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-2">
-        CareCompass
-      </h1>
-      <p className="text-gray-600 mb-6">
-        Treatment pathway projection for newly diagnosed breast cancer (0–5 year horizon). Compares recurrence risk, symptom burden, quality of life, and cost by pathway. No life expectancy. Data: SEER, CMS, PubMed. Simulation runs only when you submit.
-      </p>
+    <div className="min-h-screen bg-stone-50 text-stone-900 p-8">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold tracking-tight mb-2">CareCompass</h1>
+        <p className="text-stone-600 mb-10">
+          Location-aware breast cancer treatment simulator. Compare 5-year
+          outcomes at nearby hospitals. Projections are probabilistic and based
+          on public registry data and hospital-level treatment patterns.
+        </p>
 
-      <CareCompassForm setResults={setResults} />
+        <Link
+          href="/intake"
+          className="inline-block px-6 py-3 bg-stone-800 text-white rounded-lg font-medium hover:bg-stone-700 transition"
+        >
+          Start patient intake
+        </Link>
 
-      {results && (
-        <ProjectionResults data={results as import("./lib/api").ProjectionResult} />
-      )}
+        <p className="mt-10 text-xs text-stone-500 max-w-md">
+          No life expectancy is modeled. 0–5 year horizon only. Data: SEER,
+          CMS, PubMed. No paid APIs. Treatment patterns are inferred proxies,
+          not exact tumor board decisions.
+        </p>
+      </div>
     </div>
   );
 }

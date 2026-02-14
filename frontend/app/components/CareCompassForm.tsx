@@ -16,6 +16,7 @@ export default function CareCompassForm({ setResults }: CareCompassFormProps) {
   const [prPositive, setPrPositive] = useState<boolean | null>(null);
   const [her2Positive, setHer2Positive] = useState<boolean | null>(null);
   const [fertilityConcern, setFertilityConcern] = useState(false);
+  const [treatmentAdherence, setTreatmentAdherence] = useState(100);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -37,6 +38,7 @@ export default function CareCompassForm({ setResults }: CareCompassFormProps) {
         pr_positive: prPositive === null ? undefined : prPositive,
         her2_positive: her2Positive === null ? undefined : her2Positive,
         fertility_preservation_concern: fertilityConcern,
+        treatment_adherence: treatmentAdherence / 100,
       };
       const data = await runProjection(params);
       setResults(data);
@@ -160,6 +162,21 @@ export default function CareCompassForm({ setResults }: CareCompassFormProps) {
           />
           <span className="text-sm">Fertility preservation concern</span>
         </label>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Treatment adherence (70–100%)
+        </label>
+        <input
+          type="range"
+          min={70}
+          max={100}
+          value={treatmentAdherence}
+          onChange={(e) => setTreatmentAdherence(Number(e.target.value))}
+          className="w-full"
+        />
+        <span className="text-sm text-gray-600">{treatmentAdherence}%</span>
       </div>
 
       <button

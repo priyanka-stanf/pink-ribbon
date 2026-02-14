@@ -1,5 +1,7 @@
 fastapi
-uvicorn
+uvicorn[standard]
 numpy
 pydantic
 scipy
+python-multipart
+pypdf
