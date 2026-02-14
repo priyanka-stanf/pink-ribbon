@@ -1,0 +1,81 @@
+id,name,lat,lon,type,quality_rating,has_oncology,procedure_volume,cost_tier,cms_overall_stars,cms_mortality_rating,cms_readmission_rating,cms_patient_experience,cms_spending_per_beneficiary
+mskcc,Memorial Sloan Kettering Cancer Center,40.7614,-73.9776,clinical_trial,5,1,650,red,5,Above average,Below average,Above average,Above national average
+nyp,NewYork-Presbyterian Hospital,40.7614,-73.9550,academic,4,1,580,red,4,Above average,Same as average,Above average,Above national average
+nyu,NYU Langone Health,40.7406,-73.9776,academic,5,1,520,red,5,Above average,Below average,Above average,Above national average
+mssm,Mount Sinai Hospital,40.7900,-73.9550,academic,3,1,480,yellow,3,Same as average,Same as average,Same as average,Same as national average
+columbia,Columbia University Irving Medical Center,40.8425,-73.9397,academic,4,1,450,red,4,Above average,Same as average,Same as average,Above national average
+montefiore,Montefiore Medical Center,40.8550,-73.8780,academic,2,1,380,yellow,2,Same as average,Above average,Below average,Same as national average
+northwell,Northwell Health Lenox Hill Hospital,40.7736,-73.9566,community,4,1,320,green,4,Same as average,Below average,Above average,Below national average
+mgh,Massachusetts General Hospital,42.3631,-71.0681,academic,5,1,620,red,5,Above average,Below average,Above average,Above national average
+dfci,Dana-Farber Cancer Institute,42.3376,-71.1075,clinical_trial,5,1,580,red,5,Above average,Below average,Above average,Above national average
+bwh,Brigham and Women's Hospital,42.3359,-71.1075,academic,4,1,540,red,4,Above average,Same as average,Above average,Above national average
+bch,Boston Children's Hospital (adult oncology),42.3376,-71.1086,academic,4,1,180,yellow,4,Above average,Below average,Above average,Same as national average
+bumc,Boston Medical Center,42.3356,-71.0742,academic,3,1,290,green,3,Same as average,Same as average,Below average,Below national average
+tufts,Tufts Medical Center,42.3496,-71.0625,academic,3,1,260,yellow,3,Same as average,Same as average,Same as average,Same as national average
+mda,MD Anderson Cancer Center,29.7074,-95.3979,clinical_trial,5,1,720,red,5,Above average,Below average,Above average,Above national average
+methodist,Houston Methodist Hospital,29.7094,-95.3979,academic,5,1,420,red,5,Above average,Below average,Above average,Above national average
+baylor,Baylor St. Luke's Medical Center,29.7100,-95.4000,academic,3,1,350,yellow,3,Same as average,Same as average,Same as average,Same as national average
+memorial_hermann,Memorial Hermann Texas Medical Center,29.7080,-95.3980,community,3,1,380,green,3,Same as average,Same as average,Same as average,Below national average
+utmb,UTMB Health Galveston,29.3017,-94.7977,academic,3,1,280,green,3,Same as average,Above average,Below average,Below national average
+mayo_rochester,Mayo Clinic Rochester,44.0225,-92.4699,clinical_trial,5,1,680,yellow,5,Above average,Below average,Above average,Same as national average
+umn_fairview,University of Minnesota Medical Center,44.9730,-93.2270,academic,4,1,420,yellow,4,Above average,Same as average,Same as average,Same as national average
+abbott_northwestern,Abbott Northwestern Hospital,44.9630,-93.2790,community,4,1,350,green,4,Same as average,Below average,Above average,Below national average
+hcmc,Hennepin County Medical Center,44.9690,-93.2650,community,3,1,220,green,3,Same as average,Same as average,Below average,Below national average
+cleveland_clinic,Cleveland Clinic Main Campus,41.5020,-81.6214,clinical_trial,5,1,640,red,5,Above average,Below average,Above average,Above national average
+uh_cleveland,University Hospitals Cleveland Medical Center,41.5050,-81.6080,academic,3,1,380,yellow,3,Same as average,Same as average,Same as average,Same as national average
+metrohealth,MetroHealth Medical Center,41.4680,-81.6950,community,3,1,260,green,3,Same as average,Above average,Below average,Below national average
+jhu,Johns Hopkins Hospital,39.2970,-76.5930,academic,5,1,550,red,5,Above average,Below average,Above average,Above national average
+hopkins_bayview,Johns Hopkins Bayview Medical Center,39.2750,-76.5380,academic,3,1,280,yellow,3,Same as average,Same as average,Same as average,Same as national average
+umms,University of Maryland Medical Center,39.2900,-76.6200,academic,3,1,320,yellow,3,Same as average,Above average,Below average,Same as national average
+medstar,MedStar Franklin Square Medical Center,39.3350,-76.5150,community,3,1,220,green,3,Same as average,Same as average,Same as average,Below national average
+ucla,UCLA Medical Center,34.0661,-118.4439,academic,5,1,520,red,5,Above average,Below average,Above average,Above national average
+cedars,Cedars-Sinai Medical Center,34.0719,-118.3780,academic,4,1,480,red,4,Above average,Same as average,Above average,Above national average
+usc,USC Norris Comprehensive Cancer Center,34.0600,-118.2050,academic,4,1,420,yellow,4,Above average,Same as average,Same as average,Same as national average
+city_of_hope,City of Hope National Medical Center,34.1292,-117.9611,clinical_trial,5,1,450,red,5,Above average,Below average,Above average,Above national average
+hoag,Hoag Memorial Hospital Presbyterian,33.6186,-117.9289,community,5,1,380,green,5,Above average,Below average,Above average,Below national average
+ucsf,UCSF Medical Center,37.7630,-122.4580,academic,5,1,480,red,5,Above average,Below average,Above average,Above national average
+stanford,Stanford Health Care,37.4419,-122.1430,academic,5,1,520,red,5,Above average,Below average,Above average,Above national average
+ucsf_mission,UCSF Mission Bay,37.7630,-122.3900,academic,4,1,420,red,4,Above average,Same as average,Above average,Above national average
+kaiser_sf,Kaiser Permanente San Francisco,37.7840,-122.4090,community,4,1,280,green,4,Same as average,Below average,Same as average,Below national average
+sutter,Sutter Health California Pacific Medical Center,37.7870,-122.4200,community,3,1,320,yellow,3,Same as average,Same as average,Same as average,Same as national average
+northwestern,Northwestern Memorial Hospital,41.8947,-87.6205,academic,5,1,520,red,5,Above average,Below average,Above average,Above national average
+uchicago,University of Chicago Medical Center,41.7897,-87.6017,academic,3,1,450,yellow,3,Same as average,Above average,Below average,Same as national average
+rush,Rush University Medical Center,41.8740,-87.6680,academic,4,1,420,yellow,4,Above average,Same as average,Same as average,Same as national average
+loyola,Loyola University Medical Center,41.8990,-87.8240,academic,3,1,350,yellow,3,Same as average,Same as average,Below average,Same as national average
+advocate_il,Advocate Illinois Masonic Medical Center,41.9400,-87.6550,community,3,1,260,green,3,Same as average,Same as average,Same as average,Below national average
+upenn,Hospital of the University of Pennsylvania,39.9480,-75.1960,academic,5,1,520,red,5,Above average,Below average,Above average,Above national average
+fox_chase,Fox Chase Cancer Center,40.0870,-75.1780,clinical_trial,4,1,480,yellow,4,Above average,Same as average,Same as average,Same as national average
+jefferson,Thomas Jefferson University Hospital,39.9480,-75.1650,academic,3,1,420,yellow,3,Same as average,Same as average,Below average,Same as national average
+temple,Temple University Hospital,39.9800,-75.1550,academic,2,1,320,green,2,Below average,Above average,Below average,Below national average
+penn_presby,Pennsylvania Hospital,39.9460,-75.1500,academic,4,1,280,green,4,Same as average,Below average,Above average,Below national average
+duke,Duke University Hospital,36.0100,-78.9400,academic,5,1,580,red,5,Above average,Below average,Above average,Above national average
+vanderbilt,Vanderbilt University Medical Center,36.1400,-86.8020,academic,4,1,480,red,4,Above average,Same as average,Above average,Above national average
+sarah_cannon,Sarah Cannon Research Institute,36.1450,-86.7850,clinical_trial,4,1,420,yellow,4,Above average,Same as average,Same as average,Same as national average
+emory,Emory University Hospital,33.7910,-84.3230,academic,4,1,520,yellow,4,Above average,Same as average,Same as average,Same as national average
+winship,Winship Cancer Institute of Emory University,33.7910,-84.3230,clinical_trial,4,1,500,yellow,4,Above average,Same as average,Same as average,Same as national average
+piedmont,Piedmont Atlanta Hospital,33.8400,-84.3800,community,4,1,380,green,4,Same as average,Below average,Above average,Below national average
+northside,Northside Hospital Atlanta,33.9300,-84.3500,community,3,1,420,green,3,Same as average,Same as average,Same as average,Below national average
+moffitt,Moffitt Cancer Center,28.0580,-82.4160,clinical_trial,5,1,620,red,5,Above average,Below average,Above average,Above national average
+tgh,Tampa General Hospital,27.9425,-82.4589,academic,3,1,350,yellow,3,Same as average,Same as average,Same as average,Same as national average
+baptist_miami,Baptist Health South Florida,25.7743,-80.2100,community,4,1,420,green,4,Same as average,Below average,Above average,Below national average
+sylvester,Sylvester Comprehensive Cancer Center,25.7900,-80.2100,academic,4,1,480,yellow,4,Above average,Same as average,Same as average,Same as national average
+mount_sinai_miami,Mount Sinai Medical Center Miami Beach,25.8120,-80.1300,community,3,1,320,yellow,3,Same as average,Same as average,Below average,Same as national average
+fred_hutch,Fred Hutchinson Cancer Center,47.6270,-122.3400,clinical_trial,5,1,520,red,5,Above average,Below average,Above average,Above national average
+uwmc,University of Washington Medical Center,47.6500,-122.3100,academic,4,1,450,yellow,4,Above average,Same as average,Same as average,Same as national average
+swedish,Swedish Medical Center Seattle,47.6100,-122.3200,community,4,1,380,green,4,Same as average,Below average,Above average,Below national average
+virginia_mason,Virginia Mason Medical Center,47.6100,-122.3340,community,3,1,280,green,3,Same as average,Same as average,Same as average,Below national average
+uc_denver,UCHealth University of Colorado Hospital,39.7400,-104.9400,academic,5,1,420,yellow,5,Above average,Below average,Above average,Same as national average
+presbyterian,Presbyterian St. Luke's Medical Center,39.7400,-104.9600,community,3,1,320,green,3,Same as average,Same as average,Same as average,Below national average
+rose,Rose Medical Center,39.7300,-104.9500,community,3,1,260,green,3,Same as average,Same as average,Same as average,Below national average
+utsw,UT Southwestern Medical Center,32.8140,-96.8490,academic,5,1,480,yellow,5,Above average,Below average,Above average,Same as national average
+baylor_dallas,Baylor University Medical Center Dallas,32.8100,-96.8000,academic,3,1,420,yellow,3,Same as average,Same as average,Same as average,Same as national average
+methodist_dallas,Methodist Dallas Medical Center,32.7800,-96.8000,community,3,1,350,green,3,Same as average,Same as average,Same as average,Below national average
+ut_san_antonio,UT Health San Antonio MD Anderson,29.5120,-98.5770,academic,4,1,380,yellow,4,Above average,Same as average,Same as average,Same as national average
+methodist_sa,Methodist Hospital San Antonio,29.5100,-98.5700,community,3,1,320,green,3,Same as average,Same as average,Same as average,Below national average
+baptist_sa,Baptist Medical Center San Antonio,29.4600,-98.5200,community,3,1,280,green,3,Same as average,Same as average,Below average,Below national average
+ucsd,UCSD Moores Cancer Center,32.7500,-117.1700,academic,5,1,420,yellow,5,Above average,Below average,Above average,Same as national average
+scripps,Scripps Memorial Hospital La Jolla,32.8400,-117.2700,community,5,1,350,green,5,Above average,Below average,Above average,Below national average
+sharp,Sharp Memorial Hospital,32.8300,-117.2000,community,3,1,320,green,3,Same as average,Same as average,Same as average,Below national average
+mayo_phoenix,Mayo Clinic Arizona,33.5100,-112.0300,clinical_trial,5,1,420,yellow,5,Above average,Below average,Above average,Same as national average
+banner,Banner University Medical Center Phoenix,33.4500,-112.0700,academic,3,1,350,yellow,3,Same as average,Same as average,Below average,Same as national average
+honorhealth,HonorHealth Scottsdale,33.5000,-112.0300,community,4,1,320,green,4,Same as average,Below average,Above average,Below national average
