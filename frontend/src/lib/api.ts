@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Hospital } from '../data/mockData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://medical-tracker-zeta.vercel.app';
 
 export interface PatientInput {
   age: number;
@@ -106,7 +106,7 @@ export async function runProjection(params: PatientInput): Promise<ProjectionRes
       }
       if (error.request) {
         // Request made but no response
-        throw new Error('Cannot connect to backend server. Please ensure the backend is running on http://localhost:8000');
+        throw new Error('Cannot connect to backend server. Please check your internet connection and try again.');
       }
     }
     throw new Error('Failed to run simulation. Please try again.');
