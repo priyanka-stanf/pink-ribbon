@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Hospital } from '../data/mockData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = 'https://pinkribbon.onrender.com';
 
 export interface PatientInput {
   age: number;
