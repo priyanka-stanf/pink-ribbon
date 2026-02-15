@@ -1,5 +1,5 @@
 """
-CareCompass Monte Carlo engine. 20-30 year breast cancer outcome projection.
+PinkRibbon Monte Carlo engine. 20-30 year breast cancer outcome projection.
 Per iteration: sample stage (SEER), subtype (SEER), treatment (real-world), apply hazards, toxicity, accumulate LY/QALY/cost.
 All parameters from params_* with provenance. No arbitrary or synthetic hospital-delay logic.
 """

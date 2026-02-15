@@ -1,5 +1,5 @@
 """
-CareCompass treatment pathway projection engine. 0-5 year horizon only.
+PinkRibbon treatment pathway projection engine. 0-5 year horizon only.
 No life expectancy. Monte Carlo per pathway: recurrence, symptom burden, QALM, cost.
 Provenance: SEER, CMS, PubMed. Simulation runs only on API request; not at page load.
 """

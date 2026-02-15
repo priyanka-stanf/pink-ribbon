@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, GitBranch, AlertCircle, CheckCircle2, Code, BarChart3, FileText } from 'lucide-react';
+import { GitBranch } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/Accordion';
@@ -11,37 +11,15 @@ export function MethodologyPage() {
       <section className="bg-gradient-to-b from-white to-[#E0F2F1] py-16 border-b">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            How CareCompass Calculates Your <span className="text-[#00BFB3]">Outcome Probabilities</span>
+            How PinkRibbon Projects <span className="text-[#00BFB3]">Breast Cancer Treatment Outcomes</span>
           </h1>
           <p className="text-xl text-slate-600">
-            A transparent explanation of our Monte Carlo simulation approach, model assumptions, and limitations.
+            A transparent explanation of our Monte Carlo simulation for 0-5 year treatment pathway projection, model assumptions, and limitations.
           </p>
         </div>
       </section>
 
       <div className="container mx-auto px-4 max-w-5xl py-12 space-y-16">
-        {/* Overview */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Overview</h2>
-          <Card className="bg-teal-50 border-[#00BFB3] border-2">
-            <CardContent className="p-8">
-              <p className="text-slate-700 mb-4 text-lg">
-                CareCompass uses <strong>Monte Carlo simulation</strong>—a computational technique that 
-                runs thousands of virtual scenarios to estimate probability distributions. Instead of 
-                giving you a single "success rate," we show you the full range of possible outcomes 
-                based on your specific situation.
-              </p>
-              <div className="bg-white p-4 rounded-lg border border-teal-200">
-                <p className="text-slate-700">
-                  <strong>Think of it like a weather forecast:</strong> Instead of "it will rain tomorrow" 
-                  (deterministic), we say "70% chance of rain" (probabilistic). Healthcare outcomes work 
-                  the same way.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
         {/* Core Modeling Approach */}
         <section>
           <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
@@ -55,39 +33,22 @@ export function MethodologyPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Badge className="bg-[#00BFB3] text-white">Step 1</Badge>
-                  Build a Patient Journey Graph
+                  Define Treatment Pathways & Eligibility
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-700 mb-4">
-                  We model your healthcare journey as a series of decision nodes:
+                  We model 7 discrete treatment pathways for breast cancer. Pathway eligibility is determined by stage and subtype:
                 </p>
-                <div className="bg-slate-100 p-6 rounded-lg font-mono text-sm space-y-2">
-                  <div>Symptom Onset</div>
-                  <div className="ml-4">↓</div>
-                  <div>Call 911 vs. Drive Yourself</div>
-                  <div className="ml-4">↓</div>
-                  <div>Transport Delay</div>
-                  <div className="ml-4">↓</div>
-                  <div>Hospital Arrival & Triage</div>
-                  <div className="ml-4">↓</div>
-                  <div>Imaging (CT/MRI)</div>
-                  <div className="ml-4">↓</div>
-                  <div>Treatment Eligibility Determination</div>
-                  <div className="ml-4">↓</div>
-                  <div>Treatment Execution</div>
-                  <div className="ml-4">↓</div>
-                  <div>Complications (yes/no)</div>
-                  <div className="ml-4">↓</div>
-                  <div>ICU/Ward Care</div>
-                  <div className="ml-4">↓</div>
-                  <div>Rehabilitation Access</div>
-                  <div className="ml-4">↓</div>
-                  <div className="font-bold">90-Day Outcome</div>
+                <div className="bg-slate-100 p-6 rounded-lg text-sm space-y-3">
+                  <div><strong>Stage I-II, HR+:</strong> Lumpectomy+Radiation, Mastectomy±Recon, Endocrine Therapy, Clinical Trial</div>
+                  <div><strong>Stage I-II, HER2+:</strong> Lumpectomy+Radiation, Mastectomy±Recon, HER2-Targeted, Clinical Trial</div>
+                  <div><strong>Stage I-II, TNBC:</strong> Lumpectomy+Radiation, Mastectomy±Recon, Chemotherapy+Surgery, Clinical Trial</div>
+                  <div><strong>Stage III:</strong> Mastectomy±Recon, Chemotherapy+Surgery, Endocrine (HR+), HER2-Targeted (HER2+), Clinical Trial</div>
+                  <div><strong>Stage IV:</strong> Chemotherapy+Surgery, Endocrine (HR+), HER2-Targeted (HER2+), Clinical Trial</div>
                 </div>
                 <p className="text-slate-700 mt-4">
-                  Each node has a time delay distribution, probability of correct action, and effect 
-                  size on outcome.
+                  If stage or subtype is unknown, we sample from SEER age-conditional distributions.
                 </p>
               </CardContent>
             </Card>
@@ -101,40 +62,39 @@ export function MethodologyPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-700 mb-4">For each hospital, we estimate parameters using:</p>
-                
+                <p className="text-slate-700 mb-4">For each treatment pathway, we extract parameters from validated sources:</p>
+
                 <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="hospital">
-                    <AccordionTrigger>Hospital-Specific Data (from CMS)</AccordionTrigger>
+                  <AccordionItem value="seer">
+                    <AccordionTrigger>SEER Epidemiology (Baseline Risk)</AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                        <li>Historical mortality rates</li>
-                        <li>Treatment utilization rates</li>
-                        <li>Average time-to-treatment metrics</li>
-                        <li>Complication rates</li>
-                        <li>Volume (number of cases per year)</li>
+                        <li>Stage distribution by age (e.g., age 18-49: 42% Stage I, 38% Stage II, 15% Stage III, 5% Stage IV)</li>
+                        <li>Subtype distribution by age (HR+ ~75%, HER2+ ~15%, TNBC ~12%)</li>
+                        <li>Baseline 5-year recurrence probability by stage (sampled from SEER survival data)</li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                  
-                  <AccordionItem value="clinical">
-                    <AccordionTrigger>Clinical Trial Data</AccordionTrigger>
+
+                  <AccordionItem value="pubmed">
+                    <AccordionTrigger>PubMed/RCTs (Treatment Effects)</AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                        <li>Treatment efficacy under ideal conditions</li>
-                        <li>Adverse event rates</li>
-                        <li>Time-to-treatment sensitivity</li>
+                        <li>Hazard ratios for recurrence by pathway (e.g., HER2-targeted therapy: HR=0.60)</li>
+                        <li>Acute symptom rates (e.g., chemotherapy: nausea 70%, fatigue 85%, neuropathy 45%)</li>
+                        <li>Persistent symptom rates (e.g., 30% of neuropathy persists beyond 6 months)</li>
+                        <li>Utility weights for quality-of-life adjustments (EQ-5D from literature)</li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                  
-                  <AccordionItem value="population">
-                    <AccordionTrigger>Population Data</AccordionTrigger>
+
+                  <AccordionItem value="cms">
+                    <AccordionTrigger>CMS Data (Costs & Hospital Quality)</AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                        <li>Age-outcome relationships</li>
-                        <li>Comorbidity effects</li>
-                        <li>Stage-outcome curves</li>
+                        <li>Procedure cost distributions (mean, CV): lumpectomy $8,500±15%, mastectomy+recon $28,000±22%, HER2-targeted therapy $45,000±35%/year</li>
+                        <li>Regional cost modifiers by ZIP code</li>
+                        <li>Hospital quality ratings and MSPB scores for hospital search</li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -152,27 +112,29 @@ export function MethodologyPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-700 mb-4">
-                  We run <strong>1,000-5,000 virtual "patients"</strong> through the journey:
+                  We run <strong>5,000 virtual "patients"</strong> through each eligible pathway:
                 </p>
                 <div className="bg-slate-900 text-green-400 p-6 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`For each simulation run (N = 1,000 to 5,000):
-    1. Sample arrival time delay ~ LogNormal(hospital_mean, hospital_sd)
-    2. Sample imaging delay ~ Gamma(hospital_params)
-    3. Determine treatment eligibility (based on time window, stage)
-    4. Sample whether hospital provides treatment
-       ~ Bernoulli(hospital_adherence_rate)
-    5. If treated, sample treatment effectiveness
-       ~ Beta(trial_alpha, trial_beta)
-    6. Sample complication occurrence
-       ~ Bernoulli(hospital_complication_rate)
-    7. Sample rehab access ~ Bernoulli(geographic_availability)
-    8. Calculate final outcome score
-    9. Record outcome`}</pre>
+                  <pre>{`For each simulation run (N = 5,000 per pathway):
+    1. Sample baseline 5y recurrence prob ~ SEER(stage)
+    2. Apply pathway hazard ratio (e.g., HR=0.60 for HER2-targeted)
+       → p_recur = min(0.99, baseline_prob * HR)
+    3. Sample recurrence event ~ Bernoulli(p_recur)
+    4. Sample acute symptoms (first 6 months):
+       - nausea, fatigue, neuropathy, etc.
+       ~ Bernoulli(symptom_rate_from_literature)
+    5. For each acute symptom, sample persistence (months 6-60)
+       ~ Bernoulli(persistent_rate)
+    6. Calculate utility per month based on symptoms
+       → QALM = sum of monthly utilities over 60 months
+    7. Count months with utility < 0.90 as symptom_months
+    8. Sample pathway cost ~ LogNormal(mean, cv) * regional_modifier
+    9. Check for major long-term effects (LTE)
+    10. Record: recurrence_5y, symptom_months, QALM, cost, major_LTE`}</pre>
                 </div>
                 <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-sm text-blue-900">
-                    <strong>Output:</strong> A distribution of 1,000-5,000 outcomes, from which we calculate 
-                    median outcome, 5th/95th percentiles, and probability of each outcome category.
+                    <strong>Output per pathway:</strong> Distribution of 5,000 outcomes → median, IQR, 95% CI for recurrence risk, symptom burden, QALM, cost. Pathways are compared side-by-side.
                   </p>
                 </div>
               </CardContent>
@@ -183,154 +145,65 @@ export function MethodologyPage() {
         {/* Breast Cancer Model */}
         <section>
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Breast Cancer Model Specification</h2>
-          
+
           <Card>
             <CardContent className="p-8 space-y-6">
               <div>
-                <h3 className="font-bold text-lg text-slate-900 mb-3">Primary Outcome</h3>
-                <p className="text-slate-700">5-year survival and recurrence-free survival rates</p>
+                <h3 className="font-bold text-lg text-slate-900 mb-3">Time Horizon</h3>
+                <p className="text-slate-700">0-5 years (60 months) post-diagnosis. <strong>No life expectancy modeling</strong>—focused on treatment pathway outcomes only.</p>
               </div>
 
               <div>
-                <h3 className="font-bold text-lg text-slate-900 mb-3">Key Predictors</h3>
-                
+                <h3 className="font-bold text-lg text-slate-900 mb-3">Primary Outcomes (5 dimensions)</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700 ml-4">
+                  <li><strong>5-Year Recurrence Probability:</strong> Bernoulli event (yes/no) from baseline × pathway HR</li>
+                  <li><strong>Symptom Burden:</strong> Months (0-60) with utility &lt; 0.90 (moderate/severe symptoms)</li>
+                  <li><strong>Quality-Adjusted Life Months (QALM):</strong> Sum of monthly utilities over 60 months</li>
+                  <li><strong>Treatment Costs:</strong> Sampled from CMS cost distributions (USD)</li>
+                  <li><strong>Major Long-Term Effects (LTE):</strong> Binary indicator for serious persistent complications</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-lg text-slate-900 mb-3">Key Input Parameters</h3>
+
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Patient Factors (from your profile):</h4>
+                    <h4 className="font-semibold text-slate-900 mb-2">Patient Factors (user-provided or sampled):</h4>
                     <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                      <li>Age (continuous variable; age &gt; 65 has different outcomes)</li>
-                      <li>Stage at diagnosis (0-IV)</li>
-                      <li>Tumor characteristics (ER/PR/HER2 status when available)</li>
-                      <li>Comorbidities (diabetes, heart disease, etc.)</li>
+                      <li>Age (18-100; affects stage/subtype distributions if unknown)</li>
+                      <li>Stage at diagnosis (I, II, III, IV, or unknown → sampled from SEER)</li>
+                      <li>ER/PR/HER2 status (determines subtype: HR+, HER2+, TNBC)</li>
+                      <li>Menopausal status (pre/post/unknown)</li>
+                      <li>ZIP code (for regional cost adjustment and hospital search)</li>
+                      <li>Fertility preservation concerns (optional flag)</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Hospital Factors (from CMS/Leapfrog):</h4>
+                    <h4 className="font-semibold text-slate-900 mb-2">Treatment Pathway Parameters (from literature):</h4>
                     <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                      <li>Cancer center accreditation (NCI-designated, CoC-accredited, etc.)</li>
-                      <li>Annual case volume for breast cancer</li>
-                      <li>30-day mortality rate</li>
-                      <li>Complication rate</li>
-                      <li>Access to clinical trials</li>
-                      <li>Multidisciplinary tumor board availability</li>
+                      <li>Hazard ratios for recurrence (e.g., HER2-targeted: HR=0.60, endocrine: HR=0.70)</li>
+                      <li>Acute symptom rates (nausea, fatigue, neuropathy, etc.) from RCTs</li>
+                      <li>Persistent symptom probabilities (e.g., 30% of neuropathy persists)</li>
+                      <li>Utility weights for symptom combinations (from EQ-5D literature)</li>
+                      <li>Cost distributions by procedure (mean, CV) from CMS</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Treatment Pathway Factors:</h4>
+                    <h4 className="font-semibold text-slate-900 mb-2">Hospital Search (optional):</h4>
                     <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                      <li>Whether surgery is performed at high-volume center</li>
-                      <li>Whether radiation therapy is evidence-based</li>
-                      <li>Chemotherapy regimen selection and adherence</li>
-                      <li>Access to targeted therapies</li>
+                      <li>Hospital quality ratings (1-5 stars) from CMS Hospital Compare</li>
+                      <li>MSPB scores (cost efficiency: &lt;1.0 = below avg cost, &gt;1.0 = above avg)</li>
+                      <li>Mortality, safety, readmission comparison scores</li>
+                      <li>Geographic proximity (ZIP3 matching)</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
-        </section>
-
-        {/* Uncertainty */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <AlertCircle className="h-8 w-8 text-amber-600" />
-            Uncertainty Quantification
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border-l-4 border-l-amber-500">
-              <CardHeader>
-                <CardTitle>Aleatory Uncertainty (Random Variation)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside space-y-2 text-slate-700 ml-4">
-                  <li>Your specific cancer subtype</li>
-                  <li>Exact treatment response</li>
-                  <li>Whether complications occur</li>
-                  <li>Measurement error in hospital data</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-purple-500">
-              <CardHeader>
-                <CardTitle>Epistemic Uncertainty (Knowledge Gaps)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside space-y-2 text-slate-700 ml-4">
-                  <li>Limited sample sizes for some hospitals</li>
-                  <li>Incomplete comorbidity data</li>
-                  <li>Generalization from trial populations</li>
-                  <li>Model specification uncertainty</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="mt-6 bg-blue-50 border-blue-300">
-            <CardContent className="p-6">
-              <h4 className="font-bold text-blue-900 mb-2">How We Show It:</h4>
-              <ul className="space-y-1 text-blue-800">
-                <li>✓ Confidence intervals on all probabilities</li>
-                <li>✓ "Uncertainty: Moderate" labels when data is sparse</li>
-                <li>✓ Wider outcome distributions when uncertainty is high</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Model Validation */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <CheckCircle2 className="h-8 w-8 text-green-600" />
-            Model Validation
-          </h2>
-          
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>1. Historical Backtesting</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-700">
-                  <li>• Train model on 2018-2021 CMS data</li>
-                  <li>• Test predictions on 2022-2023 data</li>
-                  <li>• Compare predicted vs. actual hospital mortality rates</li>
-                  <li className="font-semibold text-green-700">
-                    ✓ Current accuracy: Within 2.3 percentage points for 85% of hospitals
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>2. Literature Concordance</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-700">
-                  <li>• Simulated treatment effects match published meta-analyses</li>
-                  <li>• Stage-outcome relationships consistent with cancer registry validation</li>
-                  <li>• Volume-outcome curves align with published research</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>3. Expert Review</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-700">
-                  <li>• Clinical advisors validate care pathway logic</li>
-                  <li>• Oncologists review treatment eligibility criteria</li>
-                  <li>• Statisticians validate probability calculations</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
         </section>
 
         {/* Assumptions & Limitations */}
@@ -356,7 +229,7 @@ export function MethodologyPage() {
                       limitation: 'Hospitals change staff, protocols, equipment'
                     },
                     {
-                      assumption: 'Average = Your Case',
+                      assumption: 'Averaging unknown factors',
                       note: "We use population averages for factors we don't know about you",
                       limitation: 'You might be higher or lower risk than average'
                     }
@@ -372,148 +245,7 @@ export function MethodologyPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card className="border-l-4 border-l-red-500">
-              <CardHeader>
-                <CardTitle className="text-red-900">What We Don't Model (Yet) ✗</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-700">
-                  <li>• Individual physician skill variation</li>
-                  <li>• Specific tumor genomics</li>
-                  <li>• Social support and home environment</li>
-                  <li>• Patient preferences for aggressive treatment</li>
-                  <li>• Real-time bed availability</li>
-                  <li>• Seasonal variation in capacity</li>
-                  <li>• Day of week effects</li>
-                  <li>• Patient-level biomarkers</li>
-                </ul>
-              </CardContent>
-            </Card>
           </div>
-        </section>
-
-        {/* Statistical Techniques */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <BarChart3 className="h-8 w-8 text-[#00BFB3]" />
-            Statistical Techniques Used
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Probability Distributions</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-slate-700 space-y-2">
-                <p><strong>LogNormal:</strong> Time delays</p>
-                <p><strong>Gamma:</strong> Length of stay, treatment durations</p>
-                <p><strong>Beta:</strong> Proportions (success rates)</p>
-                <p><strong>Bernoulli:</strong> Binary events (complication yes/no)</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Regression Models</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-slate-700 space-y-2">
-                <p><strong>Logistic Regression:</strong> Predicting binary outcomes</p>
-                <p><strong>Cox Proportional Hazards:</strong> Time-to-event outcomes</p>
-                <p><strong>Bayesian Methods:</strong> Incorporating prior knowledge</p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Open Source */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <Code className="h-8 w-8 text-[#00BFB3]" />
-            Open Source & Reproducibility
-          </h2>
-          
-          <Card className="bg-gradient-to-br from-teal-50 to-blue-50 border-[#00BFB3] border-2">
-            <CardContent className="p-8 space-y-4">
-              <div>
-                <h3 className="font-bold text-slate-900 mb-2">Code Availability:</h3>
-                <p className="text-slate-700">
-                  Simulation engine: github.com/carecompass/monte-carlo-engine (MIT license)
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="font-bold text-slate-900 mb-2">Replication Package:</h3>
-                <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                  <li>Sample datasets (anonymized)</li>
-                  <li>Model specifications</li>
-                  <li>Validation scripts</li>
-                  <li>Unit tests</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-slate-900 mb-2">Peer Review:</h3>
-                <p className="text-slate-700">
-                  We welcome external validation and critique. Submit issues or pull requests on GitHub.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Updates */}
-        <section>
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Updates & Versioning</h2>
-          
-          <Card>
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <p className="text-sm text-slate-500 mb-1">Model Version</p>
-                  <p className="text-2xl font-bold text-[#00BFB3]">1.0 (Breast Cancer MVP)</p>
-                </div>
-                
-                <div>
-                  <p className="text-sm text-slate-500 mb-1">Last Updated</p>
-                  <p className="text-2xl font-bold text-slate-900">February 14, 2025</p>
-                </div>
-                
-                <div>
-                  <p className="text-sm text-slate-500 mb-1">Next Planned Update</p>
-                  <p className="text-xl font-semibold text-slate-700">June 2025</p>
-                </div>
-                
-                <div>
-                  <p className="text-sm text-slate-500 mb-1">Changelog</p>
-                  <p className="text-xl font-semibold text-slate-700">View on GitHub</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Created By */}
-        <section className="text-center">
-          <Card className="bg-gradient-to-br from-teal-50 to-blue-50 border-[#00BFB3]">
-            <CardContent className="p-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Created By</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-900">
-                <div>
-                  <p className="font-semibold text-lg">Grace Housman</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">Rudy Pathak</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">Shardul Marathe</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">Priyanka Kudallur</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </section>
       </div>
     </div>

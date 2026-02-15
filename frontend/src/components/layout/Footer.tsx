@@ -13,8 +13,8 @@ export function Footer() {
                <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#E91E63] rounded-full ring-1 ring-white"></div>
              </div>
              <span className="font-bold text-lg tracking-tight">
-               <span className="text-[#E91E63]">BC</span>
-               <span className="text-[#00BFB3]">areCompass</span>
+               <span className="text-[#E91E63]">Pink</span>
+               <span className="text-[#00BFB3]">Ribbon</span>
              </span>
           </Link>
           <p className="text-slate-500 text-sm max-w-sm mb-4">
@@ -42,13 +42,12 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-slate-600">
             <li><Link to="/about" className="hover:text-[#00BFB3] transition-colors">About Us</Link></li>
             <li><Link to="/data-sources" className="hover:text-[#00BFB3] transition-colors">Data Sources (CMS)</Link></li>
-            <li><Link to="/privacy" className="hover:text-[#00BFB3] transition-colors">Privacy Policy</Link></li>
             <li><Link to="/methodology" className="hover:text-[#00BFB3] transition-colors">Methodology</Link></li>
           </ul>
         </div>
       </div>
-      <div className="container mx-auto mt-8 pt-8 border-t border-slate-200 text-center text-xs text-slate-400 flex flex-col md:flex-row justify-between items-center">
-        <span>© 2026 BCareCompass Inc.</span>
+      <div className="container mx-auto mt-8 pt-8 border-t border-slate-200 text-center text-xs text-slate-400 flex flex-col md:flex-row justify-between items-center gap-2">
+        <span>© 2026 PinkRibbon Inc. · Created for TreeHacks 2026</span>
         <span className="flex items-center gap-2 mt-2 md:mt-0">
            <span className="w-2 h-2 bg-green-500 rounded-full"></span> HIPAA Compliant (Local Storage Only)
         </span>

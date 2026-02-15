@@ -9,7 +9,6 @@ import { ComparisonPage } from '../pages/ComparisonPage';
 import { SimulationDashboard } from '../pages/SimulationDashboard';
 import { AboutUsPage } from '../pages/AboutUsPage';
 import { DataSourcesPage } from '../pages/DataSourcesPage';
-import { PrivacyPolicyPage } from '../pages/PrivacyPolicyPage';
 import { MethodologyPage } from '../pages/MethodologyPage';
 
 export default function App() {
@@ -29,7 +28,6 @@ export default function App() {
           {/* Footer/Info Pages */}
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/data-sources" element={<DataSourcesPage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/methodology" element={<MethodologyPage />} />
         </Route>
       </Routes>

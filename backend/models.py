@@ -1,5 +1,5 @@
 """
-CareCompass input model. All fields optional except age and zip for projection.
+PinkRibbon input model. All fields optional except age and zip for projection.
 """
 from enum import Enum
 from typing import Optional

@@ -1,4 +1,4 @@
-# How to run CareCompass
+# How to run PinkRibbon
 
 Use **two separate terminals**. The backend runs until you stop it; use the second terminal for the frontend.
 

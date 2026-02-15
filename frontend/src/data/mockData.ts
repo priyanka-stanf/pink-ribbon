@@ -1,4 +1,4 @@
-// Mock Data for BCareCompass
+// Mock Data for PinkRibbon
 
 export interface Hospital {
   id: string;

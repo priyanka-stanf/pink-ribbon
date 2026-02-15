@@ -12,9 +12,6 @@ export function DataSourcesPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             Transparency in <span className="text-[#00BFB3]">Healthcare Data</span>
           </h1>
-          <p className="text-xl text-slate-600">
-            Every statistic, every probability, every recommendation—traced back to its source.
-          </p>
         </div>
       </section>
 
@@ -36,20 +33,16 @@ export function DataSourcesPage() {
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">What We Use:</h4>
                   <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                    <li>Annual incidence per 100,000 population</li>
-                    <li>Age-adjusted cancer rates</li>
-                    <li>Stage distribution at diagnosis</li>
-                    <li>5-year survival rates by stage</li>
-                    <li>Demographic breakdowns (age, race, geography)</li>
+                    <li><strong>Stage distribution by age:</strong> e.g., age 18-49: 42% Stage I, 38% Stage II, 15% Stage III, 5% Stage IV</li>
+                    <li><strong>Subtype distribution by age:</strong> HR+ ~75%, HER2+ ~15%, TNBC ~12% (varies by age)</li>
+                    <li><strong>5-year relative survival by stage:</strong> Stage I: 99%, Stage II: 93%, Stage III: 75%, Stage IV: 29%</li>
+                    <li><strong>10-year survival rates:</strong> Used for long-term outcome validation</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">Why It Matters:</h4>
                   <p className="text-slate-700">
-                    SEER provides validated, population-level probabilities that define the baseline probability of
-                    disease, distribution of disease severity, and survival likelihoods conditional on stage. These
-                    variables are foundational for our Monte Carlo model because they give us real-world epidemiological
-                    data rather than anecdotal clinical findings.
+                    SEER provides the baseline probabilities for our Monte Carlo model. When stage or subtype is unknown, we sample from these age-conditional distributions. The 5-year recurrence baseline (derived from SEER survival data) is the starting point before applying treatment-specific hazard ratios.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-4 items-center">
@@ -75,20 +68,17 @@ export function DataSourcesPage() {
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">What We Use:</h4>
                   <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                    <li>Meta-analyses and randomized controlled trials (last 10 years)</li>
-                    <li>Hazard ratios for treatment efficacy</li>
-                    <li>Recurrence rates and progression-free survival</li>
-                    <li>Treatment-specific survival outcomes</li>
-                    <li>Confidence intervals and effect sizes</li>
+                    <li><strong>Treatment hazard ratios:</strong> e.g., HER2-targeted therapy HR=0.60, endocrine therapy HR=0.70 for recurrence</li>
+                    <li><strong>Acute symptom rates from RCTs:</strong> chemotherapy-induced nausea (70%), fatigue (85%), neuropathy (45%)</li>
+                    <li><strong>Persistent symptom probabilities:</strong> e.g., 30% of acute neuropathy persists beyond 6 months</li>
+                    <li><strong>Utility weights for QALYs:</strong> EQ-5D scores for symptom combinations</li>
+                    <li><strong>Clinical trial effect sizes:</strong> Confidence intervals for treatment efficacy</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">Why It Matters:</h4>
                   <p className="text-slate-700">
-                    Automated literature retrieval through PubMed allows our Monte Carlo engine to simulate outcome
-                    differences between treatment pathways using validated clinical trial data. We filter for
-                    meta-analyses, systematic reviews, and RCTs with large sample sizes and clearly reported confidence
-                    intervals. Studies older than 10 years are down-weighted to reflect evolving treatment standards.
+                    PubMed provides the treatment effect modifiers applied to SEER baseline risks. Hazard ratios determine how much each pathway reduces recurrence probability. Symptom rates and utility weights calculate symptom burden and QALM. All parameters are extracted from meta-analyses and RCTs, not single studies.
                   </p>
                 </div>
                 <div>
@@ -124,21 +114,17 @@ export function DataSourcesPage() {
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">What We Use:</h4>
                   <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                    <li>Hospital General Information (quality ratings, services offered)</li>
-                    <li>Medicare Spending Per Beneficiary (MSPB) scores</li>
-                    <li>Procedure billing frequencies and utilization rates</li>
-                    <li>Regional treatment variability data</li>
-                    <li>Hospital performance metrics and mortality rates</li>
+                    <li><strong>Hospital General Information CSV:</strong> ~4,500 hospitals with quality ratings, ownership, emergency services</li>
+                    <li><strong>Medicare Spending Per Beneficiary (MSPB) scores:</strong> Cost efficiency (1.0=national avg, &lt;1.0=lower cost, &gt;1.0=higher cost)</li>
+                    <li><strong>Procedure cost distributions:</strong> Mean and CV for lumpectomy ($8,500±15%), mastectomy+recon ($28,000±22%), chemotherapy ($3,500/cycle±25%), HER2-targeted ($45,000/year±35%)</li>
+                    <li><strong>Regional cost modifiers:</strong> Geographic adjustment factors by ZIP code/state</li>
+                    <li><strong>Hospital quality metrics:</strong> Mortality, safety, readmission comparison scores</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">Why It Matters:</h4>
                   <p className="text-slate-700">
-                    CMS data provides real-world treatment adoption patterns and utilization rates. This helps model
-                    the probability that a diagnosed patient actually receives specific therapies at different facilities.
-                    Clinical trial efficacy does not equal real-world effectiveness, so these utilization rates are
-                    essential for accurate outcome predictions. MSPB scores allow us to factor in cost efficiency when
-                    comparing treatment centers.
+                    CMS cost distributions allow us to sample pathway costs realistically (not fixed values). Regional modifiers adjust for geographic variation. Hospital search uses CMS Hospital Compare data to show quality ratings and MSPB cost efficiency scores, helping patients identify high-quality, cost-effective facilities.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-4 items-center">
@@ -152,227 +138,34 @@ export function DataSourcesPage() {
               </CardContent>
             </Card>
 
-            {/* CDC */}
+            {/* NCCN/ASCO Guidelines */}
             <Card className="border-l-4 border-l-purple-500">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <Shield className="h-6 w-6 text-purple-600" />
-                  4. Centers for Disease Control and Prevention (CDC)
+                  4. NCCN/ASCO Clinical Guidelines
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">What We Use:</h4>
                   <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                    <li>Behavioral Risk Factor Surveillance System (BRFSS) data</li>
-                    <li>Environmental exposure risk data</li>
-                    <li>Geographic and demographic risk factors</li>
-                    <li>Age, sex, and location-based risk stratification</li>
+                    <li>Treatment pathway definitions (lumpectomy+radiation, mastectomy, etc.)</li>
+                    <li>Eligibility criteria by stage and subtype</li>
+                    <li>Standard-of-care treatment sequences</li>
+                    <li>Clinical trial enrollment considerations</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 mb-2">Why It Matters:</h4>
                   <p className="text-slate-700">
-                    CDC datasets support probabilistic modeling of risk stratification by age, sex, and geography.
-                    This allows our simulations to vary baseline risk based on environmental exposure rather than
-                    assuming a uniform population. Risk factors can significantly affect treatment outcomes and
-                    recurrence probabilities.
+                    NCCN/ASCO guidelines define which treatment pathways are clinically appropriate for each stage-subtype combination. This ensures our pathway eligibility logic matches real-world clinical practice (e.g., endocrine therapy only for HR+, HER2-targeted only for HER2+).
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-4 items-center">
-                  <Badge variant="secondary">Free public access</Badge>
-                  <Badge variant="secondary">Population-level data</Badge>
-                  <a href="https://www.cdc.gov/data" target="_blank" rel="noopener noreferrer"
-                     className="text-[#00BFB3] hover:underline flex items-center gap-1 text-sm">
-                    cdc.gov/data <ExternalLink className="h-3 w-3" />
-                  </a>
+                  <Badge variant="secondary">Public guidelines</Badge>
+                  <Badge variant="secondary">Evidence-based</Badge>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* ClinicalTrials.gov */}
-            <Card className="border-l-4 border-l-amber-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <Database className="h-6 w-6 text-amber-600" />
-                  5. ClinicalTrials.gov
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-bold text-slate-900 mb-2">What We Use:</h4>
-                  <ul className="list-disc list-inside space-y-1 text-slate-700 ml-4">
-                    <li>Structured metadata on ongoing trials</li>
-                    <li>Published results from completed trials</li>
-                    <li>Treatment efficacy data for new interventions</li>
-                    <li>Enrollment criteria and trial availability</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 mb-2">Why It Matters:</h4>
-                  <p className="text-slate-700">
-                    While this doesn't directly inform survival probabilities in our current model, it serves as a
-                    forward-looking adjustment factor for modeling future projections beyond current standard of care.
-                    It also helps identify emerging therapies and pipeline treatments that may become available.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-4 items-center">
-                  <Badge variant="secondary">Free API access</Badge>
-                  <Badge variant="secondary">450,000+ trials</Badge>
-                  <a href="https://clinicaltrials.gov" target="_blank" rel="noopener noreferrer"
-                     className="text-[#00BFB3] hover:underline flex items-center gap-1 text-sm">
-                    clinicaltrials.gov <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Monte Carlo Parameters */}
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Monte Carlo Model Parameters</h2>
-
-          <Card>
-            <CardContent className="p-8">
-              <p className="text-slate-700 mb-6">
-                Our fully automated probabilistic framework extracts and integrates the following key parameters:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Annual incidence probability</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Stage-at-diagnosis distribution</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Stage-specific 5-year survival rates</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Recurrence probabilities by treatment</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Treatment-specific hazard ratios</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Real-world treatment adoption rates</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Cost distributions by pathway</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-[#00BFB3] mt-1">•</span>
-                  <span>Mortality variance across healthcare settings</span>
-                </div>
-              </div>
-              <p className="text-slate-700 mt-6">
-                Each simulation iteration samples from these distributions, applies treatment effect modifiers, and
-                produces projected survival outcomes over a defined time horizon. This approach ingests validated
-                registry data for baseline disease probability, integrates high-quality clinical trial effect sizes
-                for treatment impact, and adjusts for real-world adoption rates.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* API Usage & Cost */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">API Usage & Cost</h2>
-
-          <Card className="bg-green-50 border-green-300">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-green-900">
-                <CheckCircle2 className="h-6 w-6 text-green-600" />
-                All Data Sources Are Free
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="text-slate-700 space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span><strong>PubMed E-utilities:</strong> Free with rate limits (no per-call charges)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span><strong>SEER data:</strong> Free (requires registration)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span><strong>CMS data:</strong> Free through public endpoints</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span><strong>CDC datasets:</strong> Free public access</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">✓</span>
-                  <span><strong>ClinicalTrials.gov API:</strong> Free access</span>
-                </li>
-              </ul>
-              <p className="text-slate-700 mt-4 text-sm">
-                No commercial data providers or paid services are required for our core functionality.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Data Quality */}
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Data Quality & Validation</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Literature Quality Control</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-slate-700 space-y-2">
-                  <li>✓ Only meta-analyses and RCTs included</li>
-                  <li>✓ Recency filters (10-year window)</li>
-                  <li>✓ Sample size weighting applied</li>
-                  <li>✓ Confidence intervals required</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Cross-Validation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-slate-700 space-y-2">
-                  <li>✓ Literature vs. SEER population data</li>
-                  <li>✓ Flag extreme deviations</li>
-                  <li>✓ Exclude biased trial populations</li>
-                  <li>✓ Maintain statistical robustness</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Continuous Updates</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="text-sm text-slate-700 space-y-2">
-                  <li>✓ API-driven automated retrieval</li>
-                  <li>✓ Quarterly data refreshes</li>
-                  <li>✓ Eliminate manual literature review</li>
-                  <li>✓ Evidence quality control maintained</li>
-                </ul>
               </CardContent>
             </Card>
           </div>
@@ -380,7 +173,7 @@ export function DataSourcesPage() {
       </section>
 
       {/* Your Data */}
-      <section className="py-16 bg-white">
+      <section className="pt-8 pb-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
             <Shield className="h-8 w-8 text-[#00BFB3]" />
@@ -416,16 +209,6 @@ export function DataSourcesPage() {
               </CardContent>
             </Card>
           </div>
-
-          <Card className="mt-8 bg-blue-50 border-blue-300">
-            <CardContent className="p-6">
-              <h4 className="font-bold text-slate-900 mb-2">What We Analyze Anonymously:</h4>
-              <p className="text-slate-700 text-sm">
-                Aggregate usage patterns (which features are used), search patterns (which conditions/locations),
-                and performance metrics (load times, errors). See our <a href="/privacy" className="text-[#00BFB3] hover:underline">Privacy Policy</a> for details.
-              </p>
-            </CardContent>
-          </Card>
         </div>
       </section>
     </div>

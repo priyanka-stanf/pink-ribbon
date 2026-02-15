@@ -24,7 +24,7 @@ export function LandingPage() {
               <span className="text-[#E91E63]">Affect Your Long-Term Outcomes</span>
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-slate-600 mx-auto">
-              CareCompass uses Monte Carlo simulation to model 5-year outcomes across different treatment approaches, personalized to your profile.
+              PinkRibbon uses Monte Carlo simulation to model 5-year outcomes across different treatment approaches, personalized to your profile.
             </p>
           </motion.div>
 
@@ -117,7 +117,7 @@ export function LandingPage() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">How BCareCompass Works</h2>
+            <h2 className="text-3xl font-bold text-slate-900">How PinkRibbon Works</h2>
             <p className="mt-4 text-slate-600 max-w-2xl mx-auto">We combine clinical trial data with real-world outcomes to help you make the safest choice.</p>
           </div>
 

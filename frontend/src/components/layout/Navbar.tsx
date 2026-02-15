@@ -9,9 +9,11 @@ export function Navbar() {
   
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Simulate Treatments', path: '/profile' },
+    { name: 'Simulate', path: '/profile' },
     { name: 'Find Centers', path: '/find-centers' },
-    { name: 'Profile', path: '/profile' },
+    { name: 'About', path: '/about' },
+    { name: 'Methodology', path: '/methodology' },
+    { name: 'Data Sources', path: '/data-sources' },
   ];
 
   return (
@@ -24,8 +26,8 @@ export function Navbar() {
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#E91E63] rounded-full ring-2 ring-white"></div>
           </div>
           <span className="font-bold text-xl tracking-tight">
-            <span className="text-[#E91E63]">BC</span>
-            <span className="text-[#00BFB3]">areCompass</span>
+            <span className="text-[#E91E63]">Pink</span>
+            <span className="text-[#00BFB3]">Ribbon</span>
           </span>
         </Link>
         

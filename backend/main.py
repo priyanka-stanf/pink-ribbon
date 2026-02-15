@@ -1,5 +1,5 @@
 """
-CareCompass API. Treatment pathway projection (0-5 year). No life expectancy.
+PinkRibbon API. Treatment pathway projection (0-5 year). No life expectancy.
 Simulation does not run at page load; only when POST /project is called.
 """
 
@@ -11,11 +11,11 @@ from models import PatientInput
 from simulation_pathway_engine import run_projection, ITERATIONS_PER_PATHWAY
 from hospital_search import search_hospitals
 
-logger = logging.getLogger("carecompass")
+logger = logging.getLogger("pinkribbon")
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(
-    title="CareCompass",
+    title="PinkRibbon",
     description="Treatment pathway projection for newly diagnosed breast cancer. 0-5 year horizon. SEER, CMS, PubMed.",
 )
 
@@ -30,7 +30,7 @@ app.add_middleware(
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "CareCompass"}
+    return {"status": "ok", "service": "PinkRibbon"}
 
 
 @app.post("/project")

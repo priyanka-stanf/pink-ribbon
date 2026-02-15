@@ -1,4 +1,4 @@
-# CareCompass data provenance
+# PinkRibbon data provenance
 
 Treatment pathway projection (0-5 year horizon). No life expectancy. All stochastic parameters trace to **SEER**, **CMS**, **PubMed** (meta-analyses/RCTs), or **explicit documented assumptions**. No invented side effect rates or arbitrary cost numbers.
 

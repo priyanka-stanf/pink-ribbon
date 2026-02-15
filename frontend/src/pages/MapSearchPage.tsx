@@ -1,5 +1,5 @@
 import { useState, useMemo, Suspense, lazy, useEffect } from 'react';
-import { Map as MapIcon, ChevronDown, X, ArrowRight, Search, SlidersHorizontal, Loader2, AlertCircle } from 'lucide-react';
+import { Map as MapIcon, X, ArrowRight, Search, SlidersHorizontal, Loader2, AlertCircle } from 'lucide-react';
 import { HOSPITALS, Hospital } from '../data/mockData';
 import { HospitalCard } from '../components/HospitalCard';
 import { Button } from '../components/ui/Button';
@@ -10,12 +10,12 @@ import { PATHWAY_NAMES, PATHWAY_TO_TREATMENT_ID, calculateBestTreatment, Project
 // Dynamically import Leaflet map to avoid SSR issues
 const LeafletMap = lazy(() => import('../components/LeafletMap').then(m => ({ default: m.LeafletMap })));
 
-const SIMULATION_STORAGE_KEY = 'carecompass_simulation_results';
+const SIMULATION_STORAGE_KEY = 'pinkribbon_simulation_results';
 
 // Get user's ZIP code from profile
 const getUserZip = (): string => {
   try {
-    const saved = localStorage.getItem('carecompass_profile');
+    const saved = localStorage.getItem('pinkribbon_profile');
     if (saved) {
       const profile = JSON.parse(saved);
       return profile.zip_code || '';
@@ -173,39 +173,6 @@ export function MapSearchPage() {
         {/* Left Panel: Sidebar */}
         <div className="w-full md:w-[400px] flex flex-col border-r bg-white shadow-xl z-20 relative">
 
-          {/* Filters */}
-          <div className="p-4 border-b bg-white space-y-3">
-             <div className="flex justify-between items-center">
-                <h2 className="font-bold text-slate-800">Filter Results</h2>
-                <Button variant="ghost" size="sm" className="h-8 text-slate-500 hover:text-[#00BFB3]">
-                  Reset
-                </Button>
-             </div>
-
-             <div className="grid grid-cols-2 gap-2">
-                <div className="space-y-1">
-                   <label className="text-xs font-medium text-slate-500">Distance</label>
-                   <input type="range" className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#00BFB3]" />
-                </div>
-                <div className="space-y-1">
-                   <label className="text-xs font-medium text-slate-500">Min Rating</label>
-                   <input type="range" className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#E91E63]" />
-                </div>
-             </div>
-
-             <div className="flex gap-2 pt-2 overflow-x-auto pb-1 scrollbar-hide">
-                <Badge variant="secondary" className="cursor-pointer hover:bg-slate-100 border border-slate-200 bg-white text-slate-600 font-normal">
-                  In-Network Only
-                </Badge>
-                <Badge variant="secondary" className="cursor-pointer hover:bg-slate-100 border border-slate-200 bg-white text-slate-600 font-normal">
-                  Academic Center
-                </Badge>
-                <Badge variant="secondary" className="cursor-pointer hover:bg-slate-100 border border-slate-200 bg-white text-slate-600 font-normal">
-                  Lowest Cost
-                </Badge>
-             </div>
-          </div>
-
           {/* Sticky Compare Bar */}
           {selectedIds.length > 0 && (
             <div className="bg-[#E91E63]/10 border-b border-[#E91E63]/20 p-3 sticky top-0 z-10 backdrop-blur-sm">
@@ -246,11 +213,8 @@ export function MapSearchPage() {
                </div>
              ) : (
                <>
-                 <div className="flex justify-between items-center text-xs text-slate-500 mb-2">
+                 <div className="text-xs text-slate-500 mb-2">
                    <span>{sortedHospitals.length} providers found</span>
-                   <div className="flex items-center gap-1 cursor-pointer hover:text-slate-800">
-                     Sort by: <strong>{bestPathway ? 'Recommended Treatment' : 'Rating'}</strong> <ChevronDown className="h-3 w-3" />
-                   </div>
                  </div>
 
                  {sortedHospitals.map(hospital => {

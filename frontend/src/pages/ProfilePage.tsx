@@ -7,8 +7,8 @@ import { Badge } from '../components/ui/Badge';
 import { useNavigate } from 'react-router-dom';
 import { runProjection, PatientInput } from '../lib/api';
 
-const STORAGE_KEY = 'carecompass_profile';
-const PRIORITIES_KEY = 'carecompass_priorities';
+const STORAGE_KEY = 'pinkribbon_profile';
+const PRIORITIES_KEY = 'pinkribbon_priorities';
 
 export function ProfilePage() {
   const navigate = useNavigate();

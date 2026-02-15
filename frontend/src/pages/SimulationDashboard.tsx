@@ -1,15 +1,15 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell
 } from 'recharts';
-import { ArrowLeft, Share2, Download, Info, Award, User, MapPin, AlertTriangle, ChevronDown, ChevronUp, Heart, Calendar, Users } from 'lucide-react';
+import { ArrowLeft, Info, Award, User, MapPin, AlertTriangle, Heart, Calendar, Users } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ProjectionResult, PATHWAY_NAMES, calculateBestTreatment } from '../lib/api';
 
-const SIMULATION_STORAGE_KEY = 'carecompass_simulation_results';
+const SIMULATION_STORAGE_KEY = 'pinkribbon_simulation_results';
 
 // Treatment-specific supportive guidance
 const TREATMENT_GUIDANCE: Record<string, {
@@ -100,7 +100,6 @@ const TREATMENT_GUIDANCE: Record<string, {
 export function SimulationDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [showMoreExpanded, setShowMoreExpanded] = useState(false);
 
   // Try to get results from navigation state first, then from localStorage
   const getProjectionResults = (): ProjectionResult | null => {
@@ -161,10 +160,6 @@ export function SimulationDashboard() {
                </Button>
                <h1 className="text-xl md:text-2xl font-bold text-slate-900">Treatment Pathway Comparison</h1>
              </div>
-             <div className="hidden md:flex gap-2">
-               <Button variant="outline" size="sm"><Share2 className="h-4 w-4 mr-2" /> Share</Button>
-               <Button variant="outline" size="sm"><Download className="h-4 w-4 mr-2" /> Export</Button>
-             </div>
            </div>
 
            {/* Profile Summary */}
@@ -185,7 +180,7 @@ export function SimulationDashboard() {
         {/* Introduction */}
         <div className="bg-gradient-to-r from-[#E91E63] to-[#D81B60] rounded-2xl p-8 text-white shadow-lg">
           <h2 className="text-3xl font-bold mb-4">Your Personalized Treatment Pathways</h2>
-          <p className="text-lg text-pink-50">
+          <p className="text-base text-pink-50">
             Based on {projectionResults.monte_carlo_n_iterations.toLocaleString()} Monte Carlo simulations tailored to your profile,
             we've analyzed all available treatment pathways. The recommended treatment is the one with the <strong>lowest 5-year recurrence probability</strong> from the simulation results.
           </p>
@@ -260,43 +255,23 @@ export function SimulationDashboard() {
                     <Award className="h-8 w-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">
                       Recommended: {PATHWAY_NAMES[bestPathway] || bestPathway}
                     </h3>
-                    <p className="text-slate-700 mb-4">
+                    <p className="text-sm text-slate-700 mb-4">
                       Based on your profile and our Monte Carlo analysis, this pathway has the lowest predicted 5-year recurrence probability.
                     </p>
 
-                    {/* Show More Button */}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setShowMoreExpanded(!showMoreExpanded)}
-                      className="text-[#E91E63] border-[#E91E63] hover:bg-[#E91E63] hover:text-white transition-colors"
-                    >
-                      {showMoreExpanded ? (
-                        <>
-                          <ChevronUp className="h-4 w-4 mr-2" />
-                          Show Less
-                        </>
-                      ) : (
-                        <>
-                          <ChevronDown className="h-4 w-4 mr-2" />
-                          Show More - What to Expect
-                        </>
-                      )}
-                    </Button>
-
-                    {/* Expandable Content */}
-                    {showMoreExpanded && TREATMENT_GUIDANCE[bestPathway] && (
+                    {/* Treatment Guidance */}
+                    {TREATMENT_GUIDANCE[bestPathway] && (
                       <div className="mt-6 space-y-6 animate-in fade-in duration-300">
                         {/* What to Expect */}
                         <div className="bg-white rounded-lg p-5 border border-pink-200 shadow-sm">
                           <div className="flex items-start gap-3">
                             <Calendar className="h-5 w-5 text-[#E91E63] mt-1 flex-shrink-0" />
                             <div>
-                              <h4 className="font-semibold text-slate-900 mb-2 text-lg">What to Expect</h4>
-                              <p className="text-slate-700 leading-relaxed">
+                              <h4 className="font-semibold text-slate-900 mb-2 text-base">What to Expect</h4>
+                              <p className="text-sm text-slate-700 leading-relaxed">
                                 {TREATMENT_GUIDANCE[bestPathway].whatToExpect}
                               </p>
                             </div>
@@ -308,8 +283,8 @@ export function SimulationDashboard() {
                           <div className="flex items-start gap-3">
                             <Heart className="h-5 w-5 text-[#E91E63] mt-1 flex-shrink-0" />
                             <div>
-                              <h4 className="font-semibold text-slate-900 mb-2 text-lg">You've Got This</h4>
-                              <p className="text-slate-700 leading-relaxed">
+                              <h4 className="font-semibold text-slate-900 mb-2 text-base">You've Got This</h4>
+                              <p className="text-sm text-slate-700 leading-relaxed">
                                 {TREATMENT_GUIDANCE[bestPathway].affirmation}
                               </p>
                             </div>
@@ -321,10 +296,10 @@ export function SimulationDashboard() {
                           <div className="flex items-start gap-3">
                             <Users className="h-5 w-5 text-[#E91E63] mt-1 flex-shrink-0" />
                             <div className="flex-1">
-                              <h4 className="font-semibold text-slate-900 mb-3 text-lg">Support & Resources</h4>
+                              <h4 className="font-semibold text-slate-900 mb-3 text-base">Support & Resources</h4>
                               <ul className="space-y-2">
                                 {TREATMENT_GUIDANCE[bestPathway].supportResources.map((resource, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-slate-700">
+                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
                                     <span className="text-[#E91E63] font-bold mt-1">•</span>
                                     <span className="leading-relaxed">{resource}</span>
                                   </li>

@@ -1,4 +1,4 @@
-import { Star, Phone, Check, ArrowDown, ArrowUp, ArrowRight, Plus } from 'lucide-react';
+import { Star, Check, ArrowDown, ArrowUp, ArrowRight, Plus } from 'lucide-react';
 import { Card, CardContent } from './ui/Card';
 import { Button } from './ui/Button';
 import { Hospital } from '../data/mockData';
@@ -90,27 +90,12 @@ export function HospitalCard({ hospital, onSelect, isSelected, onHover, isMapHov
         </div>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-between">
-           <div className="flex items-center gap-3 text-xs">
-              <span className={cn("font-medium", hospital.isInNetwork ? "text-green-600" : "text-slate-500")}>
-                {hospital.isInNetwork ? "In Network" : "Check Network"}
-              </span>
-              <span className="text-slate-300">|</span>
-              <span className="flex items-center gap-1 text-slate-500">
-                 <Phone className="h-3 w-3" /> Call
-              </span>
-           </div>
-           
-           <div className="flex gap-2">
-             <Button variant="ghost" size="sm" className="h-7 text-xs text-[#00BFB3] hover:text-[#00A69C] px-2">
-               Details
-             </Button>
-             <Button variant="outline" size="sm" className="h-7 text-xs border-slate-200 px-2" asChild>
-                <a href={`https://maps.google.com/?q=${encodeURIComponent(`${hospital.name}, ${hospital.address}, ${hospital.city}`)}`} target="_blank" rel="noreferrer">
-                   Directions
-                </a>
-             </Button>
-           </div>
+        <div className="flex items-center justify-end">
+           <Button variant="outline" size="sm" className="h-7 text-xs border-slate-200 px-2" asChild>
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(`${hospital.name}, ${hospital.address}, ${hospital.city}`)}`} target="_blank" rel="noreferrer">
+                 Directions
+              </a>
+           </Button>
         </div>
 
       </CardContent>

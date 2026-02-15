@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Users, Target, Shield, Heart, TrendingUp, Mail } from 'lucide-react';
+import { Activity, Users, Shield, Heart } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 
@@ -10,91 +10,11 @@ export function AboutUsPage() {
       <section className="bg-gradient-to-b from-white to-[#E0F2F1] py-20 border-b">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Making Healthcare Decisions Transparent, <br className="hidden sm:inline" />
-            <span className="text-[#00BFB3]">One Simulation at a Time</span>
+            Breast Cancer Treatment Decisions, <span className="text-[#00BFB3]">Powered by Monte Carlo Simulations</span>
           </h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            CareCompass was born at TreeHacks 2026 from a simple question: Why do patients make
-            life-or-death healthcare decisions with less data than they use to buy a coffee maker?
+            PinkRibbon was born at TreeHacks 2026 from a simple question: Why do breast cancer patients have such little clarity surrounding their treatment paths?
           </p>
-        </div>
-      </section>
-
-      {/* Our Story Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Our Story</h2>
-          
-          <div className="space-y-12">
-            {/* The Problem */}
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <Target className="h-6 w-6 text-red-600" />
-                </div>
-                The Problem We're Solving
-              </h3>
-              <div className="text-slate-700 space-y-4 ml-14">
-                <p>
-                  Every year, millions of patients face critical healthcare decisions with incomplete information. 
-                  You might research hospitals, read reviews, or ask friends—but you're still missing the most 
-                  important piece: <strong>How do your personal health factors, combined with a specific facility's 
-                  real-world performance, actually affect YOUR outcome?</strong>
-                </p>
-                <p>
-                  Traditional healthcare resources show you either generic success rates or hospital star ratings. 
-                  But healthcare isn't one-size-fits-all. The same breast cancer patient going to two different 
-                  hospitals 10 miles apart can have vastly different outcomes—and current tools don't help you see that.
-                </p>
-              </div>
-            </div>
-
-            {/* Our Solution */}
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <div className="p-2 bg-teal-100 rounded-lg">
-                  <Activity className="h-6 w-6 text-[#00BFB3]" />
-                </div>
-                Our Solution
-              </h3>
-              <div className="text-slate-700 space-y-4 ml-14">
-                <p>
-                  CareCompass uses <strong>Monte Carlo simulation</strong>—the same probabilistic modeling 
-                  technique used by NASA, Wall Street, and weather forecasters—to show you personalized 
-                  outcome distributions. We combine:
-                </p>
-                <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>Your individual health profile (age, stage, medical history)</li>
-                  <li>Real-world hospital performance data from CMS</li>
-                  <li>Clinical trial evidence</li>
-                  <li>Geographic access constraints</li>
-                  <li>Insurance and cost factors</li>
-                </ul>
-                <p>
-                  The result? You see not just a single success rate, but a full probability distribution 
-                  of possible outcomes, and more importantly, <strong>what factors you can actually control 
-                  to improve your odds</strong>.
-                </p>
-              </div>
-            </div>
-
-            {/* Why This Matters */}
-            <div className="bg-[#E0F2F1] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <TrendingUp className="h-6 w-6 text-[#00BFB3]" />
-                Why This Matters
-              </h3>
-              <p className="text-slate-700">
-                We believe patients deserve to see the <strong>variance</strong> in healthcare. Two patients 
-                with identical diagnoses can have wildly different outcomes based on which facility they choose, 
-                how quickly they arrive, and whether that facility actually follows evidence-based guidelines 
-                in practice.
-              </p>
-              <p className="text-slate-700 mt-4">
-                Our platform makes that variance visible—and actionable.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -111,8 +31,7 @@ export function AboutUsPage() {
                 Our Mission
               </h3>
               <p className="text-lg text-slate-700">
-                Empower patients with probabilistic clarity so they can make informed healthcare decisions 
-                based on real-world data, not just institutional reputation.
+                Empower patients with probabilistic outcomes so they can understand their treatment paths using real-world data and compare hospitals in their area.
               </p>
             </CardContent>
           </Card>
@@ -172,11 +91,9 @@ export function AboutUsPage() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* TreeHacks Project */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">The Team</h2>
-          
           <Card className="bg-gradient-to-br from-teal-50 to-blue-50 border-[#00BFB3]">
             <CardContent className="p-8">
               <h3 className="text-xl font-bold text-slate-900 mb-4">TreeHacks 2026 Project</h3>
@@ -185,7 +102,7 @@ export function AboutUsPage() {
                 healthcare policy, and data science.
               </p>
               <p className="text-sm text-slate-600 italic">
-                This project draws on research from health economics, clinical medicine, and probabilistic 
+                This project draws on research from health economics, clinical medicine, and probabilistic
                 modeling communities.
               </p>
             </CardContent>
@@ -193,30 +110,10 @@ export function AboutUsPage() {
         </div>
       </section>
 
-      {/* What's Next */}
+      {/* Created By */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">What's Next</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Current Status</h3>
-              <p className="text-slate-700">MVP focused on breast cancer treatment pathways</p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Coming Soon</h3>
-              <ul className="text-slate-700 space-y-1">
-                <li>• Cardiac care outcomes modeling</li>
-                <li>• STEMI (heart attack) decisions</li>
-                <li>• Additional cancer pathways</li>
-                <li>• International data integration</li>
-                <li>• Real-time clinical trial matching</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">Created By</h3>
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Created By</h2>
 
           <Card className="bg-gradient-to-br from-teal-50 to-blue-50 border-[#00BFB3]">
             <CardContent className="p-8">

@@ -92,7 +92,7 @@ def geocode_address(address: str, city: str, state: str, zip_code: str) -> Optio
             context = ssl._create_unverified_context()
 
         # Nominatim requires a User-Agent
-        req = Request(url, headers={'User-Agent': 'CareCompass/1.0 (Healthcare Application)'})
+        req = Request(url, headers={'User-Agent': 'PinkRibbon/1.0 (Healthcare Application)'})
         with urlopen(req, context=context, timeout=5) as response:
             _LAST_REQUEST_TIME = time.time()
             data = json.loads(response.read().decode())

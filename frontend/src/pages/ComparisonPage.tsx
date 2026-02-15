@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Star, TrendingDown, ArrowRight, ShieldCheck, Clock, MapPin, DollarSign, Download, Trophy } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Star, TrendingDown, ArrowRight, ShieldCheck, Clock, MapPin, DollarSign, Trophy } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { HOSPITALS } from '../data/mockData';
 import { cn } from '../lib/utils';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from 'recharts';
 
-const PRIORITIES_KEY = 'carecompass_priorities';
+const PRIORITIES_KEY = 'pinkribbon_priorities';
 
 export function ComparisonPage() {
   const location = useLocation();
@@ -71,16 +71,11 @@ export function ComparisonPage() {
       {/* Header */}
       <div className="sticky top-16 z-30 bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="sm" onClick={() => navigate('/find-centers')}>
-                        <ArrowLeft className="h-4 w-4 mr-2" /> Back to Search
-                    </Button>
-                    <h1 className="text-2xl font-bold text-slate-900">Comparing {hospitals.length} Centers</h1>
-                </div>
-                <Button variant="outline" size="sm" className="hidden sm:flex">
-                   <Download className="h-4 w-4 mr-2" /> Download Report
+            <div className="flex items-center gap-4 mb-6">
+                <Button variant="ghost" size="sm" onClick={() => navigate('/find-centers')}>
+                    <ArrowLeft className="h-4 w-4 mr-2" /> Back to Search
                 </Button>
+                <h1 className="text-2xl font-bold text-slate-900">Comparing {hospitals.length} Centers</h1>
             </div>
             
             {/* Top Cards Row */}
