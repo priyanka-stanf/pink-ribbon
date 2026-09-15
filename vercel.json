@@ -1,0 +1,44 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": "{backend,data}/**"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/project",
+      "dest": "/api/index.py?__route=/project"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/index.py?__route=/health"
+    },
+    {
+      "src": "/hospitals/search",
+      "dest": "/api/index.py?__route=/hospitals/search"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/frontend/assets/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/frontend/index.html"
+    }
+  ]
+}

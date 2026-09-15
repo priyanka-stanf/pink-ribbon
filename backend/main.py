@@ -58,7 +58,16 @@ def project(patient: PatientInput):
     return result
 
 @app.get("/hospitals/search")
-def hospital_search(zip_code: str = ""):
-    """Return hospitals near the given ZIP code. Exact ZIP matches first, then same ZIP3 area."""
-    results = search_hospitals(zip_code, limit=50)
-    return {"hospitals": results, "query_zip": zip_code, "count": len(results)}
+def hospital_search(zip_code: str = "", radius_miles: float = 50.0):
+    """
+    Return hospitals near the given ZIP code, ranked by true great-circle distance
+    from the ZIP's Census centroid. Falls back to ZIP3-prefix matching for ZIPs that
+    are absent from the centroid table.
+    """
+    results = search_hospitals(zip_code, limit=50, radius_miles=radius_miles)
+    return {
+        "hospitals": results,
+        "query_zip": zip_code,
+        "radius_miles": radius_miles,
+        "count": len(results),
+    }

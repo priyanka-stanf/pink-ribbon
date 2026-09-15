@@ -1,0 +1,6 @@
+# Dependencies for the Vercel Python function (api/index.py).
+# Intentionally excludes uvicorn (Vercel provides the ASGI server) and scipy
+# (declared in backend/requirements.txt but imported nowhere).
+fastapi
+pydantic
+numpy

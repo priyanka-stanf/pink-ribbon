@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { Hospital } from '../data/mockData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// In production the SPA and the Python function share an origin (see vercel.json
+// rewrites), so an empty base issues same-origin requests and no CORS is needed.
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? '' : 'http://localhost:8000');
 
 export interface PatientInput {
   age: number;

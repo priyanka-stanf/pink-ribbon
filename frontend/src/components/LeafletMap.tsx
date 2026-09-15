@@ -18,15 +18,22 @@ export function LeafletMap({ hospitals, hoveredId, selectedIds, onSelect, onHove
     setMounted(true);
   }, []);
 
-  if (!mounted || hospitals.length === 0) {
+  // Hospitals the backend could not geocode come back as (0, 0). They must be excluded
+  // from both the markers and the centre: averaging a (0, 0) in drags the centre into the
+  // Atlantic and pushes the real markers off-screen.
+  const located = hospitals.filter(
+    (h) => h.coordinates.lat !== 0 || h.coordinates.lng !== 0
+  );
+
+  if (!mounted || located.length === 0) {
     return <div className="w-full h-full bg-slate-100 flex items-center justify-center">
       <p className="text-slate-500">Loading map...</p>
     </div>;
   }
 
-  // Calculate center from hospitals
-  const avgLat = hospitals.reduce((sum, h) => sum + h.coordinates.lat, 0) / hospitals.length;
-  const avgLng = hospitals.reduce((sum, h) => sum + h.coordinates.lng, 0) / hospitals.length;
+  // Calculate center from the located hospitals only
+  const avgLat = located.reduce((sum, h) => sum + h.coordinates.lat, 0) / located.length;
+  const avgLng = located.reduce((sum, h) => sum + h.coordinates.lng, 0) / located.length;
 
   const createCustomIcon = (hospital: Hospital) => {
     const isSelected = selectedIds.includes(hospital.id);
@@ -84,7 +91,7 @@ export function LeafletMap({ hospitals, hoveredId, selectedIds, onSelect, onHove
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {hospitals.map((hospital) => (
+      {located.map((hospital) => (
         <Marker
           key={hospital.id}
           position={[hospital.coordinates.lat, hospital.coordinates.lng]}
