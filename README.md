@@ -1,3 +1,9 @@
+# PinkRibbon
+
+**Live demo: https://pinkribbon.vercel.app**
+
+A patient-facing simulator for breast cancer treatment planning. Built at TreeHacks 2026.
+
 ## Inspiration
 Nearly 40% of women with breast cancer regret their treatment decisions within five years. Why? Because outcomes can vary based on tumor type, stage, and individual risk factors, which patients rarely get to see or understand before deciding on a treatment plan. 
 
